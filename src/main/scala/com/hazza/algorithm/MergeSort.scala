@@ -1,9 +1,24 @@
-package com.hazza
+package com.hazza.algorithm
 
 /**
   * Created by hazzacheng on 17-2-1.
   */
-object Algorithm {
+
+class Person(val firstName: String, val laseName: String) extends Ordered[Person] {
+  override def compare(that: Person): Int = {
+    val lastNameComparison = laseName.compareToIgnoreCase(that.laseName)
+    val firstNameComparison = firstName.compareToIgnoreCase(that.firstName)
+    if (firstNameComparison != 0)
+      firstNameComparison
+    else
+      lastNameComparison
+  }
+
+  override def toString: String = firstName + " " + laseName
+}
+
+
+object MergeSort {
 
   def orderedMergeSort[T <: Ordered[T]](xs: List[T]): List[T] = {
     def merge(xs: List[T], ys: List[T]): List[T] =
@@ -30,20 +45,9 @@ object Algorithm {
       new Person("A", "Man")
     )
 
-    println(Algorithm.orderedMergeSort(persons))
+    println(MergeSort.orderedMergeSort(persons))
   }
 
 }
 
-class Person(val firstName: String, val laseName: String) extends Ordered[Person] {
-  override def compare(that: Person): Int = {
-    val lastNameComparison = laseName.compareToIgnoreCase(that.laseName)
-    val firstNameComparison = firstName.compareToIgnoreCase(that.firstName)
-    if (firstNameComparison != 0)
-      firstNameComparison
-    else
-      lastNameComparison
-  }
 
-  override def toString: String = firstName + " " + laseName
-}
