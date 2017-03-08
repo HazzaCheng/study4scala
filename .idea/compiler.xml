@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="study4scala" />
         <module name="test4scala" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="study4scala" target="1.8" />
       <module name="test4scala" target="1.8" />
     </bytecodeTargetLevel>
   </component>
