@@ -29,10 +29,6 @@ object SimpleDatabase extends Database with SimpleFood with SimpleRecipes {
   override def foodNamed(name: String): Option[Food] =
     allFoods.find(_.name == name)
 
-  override def allRecipes: List[Recipe] = List(FruitSalad)
-
-  case class FoodCategory(name: String, foods: List[Food])
-
   private var categories = List(
     FoodCategory("fruits", List(Apple, Orange)),
     FoodCategory("misc", List(Cream, Sugar))
