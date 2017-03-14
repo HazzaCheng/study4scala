@@ -60,6 +60,38 @@ class ColoredPoint(x: Int, y: Int, val color: Color.Value) extends ValPoint(x, y
   override def canEqual(other: Any): Boolean = other.isInstanceOf[ColoredPoint]
 }
 
+trait Tree[+T] {
+  def elem: T
+  def left: Tree[T]
+  def right: Tree[T]
+}
+
+object EmptyTree extends Tree[Nothing] {
+  def elem =
+    throw new NoSuchElementException("EmptyTree.elem")
+  def left =
+    throw new NoSuchElementException("EmptyTree.left")
+  def right =
+    throw new NoSuchElementException("EmptyTree.right")
+}
+
+class Branch[+T] (val elem: T, val left: Tree[T], val right: Tree[T]) extends Tree[T]{
+
+  override def equals(other: Any): Boolean = other match {
+    case that: Branch[_] => (this canEqual that) &&
+                             this.elem == that.elem &&
+                             this.left == that.left &&
+                             this.right == that.right
+    case _ => false
+  }
+
+
+  override def hashCode(): Int =
+    41 * (41 * (41 + elem.hashCode) + left.hashCode) + right.hashCode
+
+  def canEqual(other: Any) = other.isInstanceOf[Branch[_]]
+}
+
 object EqualStudy {
 
   def main(args: Array[String]): Unit = {
@@ -96,7 +128,11 @@ object EqualStudy {
     println(coll3 contains p1)
     println(coll3 contains redp)
     println(coll3 contains pAnon)
+    println()
 
+    val st = new Branch[List[String]](Nil, EmptyTree, EmptyTree)
+    val it = new Branch[List[Int]](Nil, EmptyTree, EmptyTree)
+    println(st == it)
 
 
 
