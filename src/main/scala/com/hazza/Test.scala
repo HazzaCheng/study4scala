@@ -15,7 +15,7 @@ object Test {
 
 
   def main(args: Array[String]): Unit = {
-
+    val arr = new Array[String](3)
   }
 
 }
