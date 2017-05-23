@@ -1,11 +1,13 @@
 package com.hazza
 
 /**
-  * 一个工厂方法的实现，将Element子类私有化的方法。
+  * 一个运用组合和继承，在单例对象里使用工厂方法的例子
   */
 object Element {
 
-  private class ArrayElement(val contents: Array[String]) extends Element
+  private class ArrayElement(
+                              val contents: Array[String]
+                            ) extends Element
 
   private class LineElement(s: String) extends Element {
     val contents = Array(s)
@@ -13,7 +15,11 @@ object Element {
     override def height = 1
   }
 
-  private class UniformElement(ch: Char, override val width: Int, override val height: Int) extends Element {
+  private class UniformElement(
+                                ch: Char,
+                                override val width: Int,
+                                override val height: Int
+                              ) extends Element {
     private val line = ch.toString * width
     def contents = Array.fill(height)(line)
   }
@@ -75,38 +81,8 @@ object LayoutElement {
   }
 
   def example = {
-    val column1 = elem("hello") above elem("**")
-    val column2 = elem("**") above elem("world")
+    val column1 = elem("hello") above elem("***")
+    val column2 = elem("***") above elem("world")
     column1 beside column2
-  }
-}
-
-//It's very amazing!
-object Spiral {
-
-  val space = elem(" ")
-  val corner = elem("+")
-
-  def spiral(nEdges: Int, direction: Int): Element = {
-    if (nEdges == 1)
-      elem("+")
-    else {
-      val sp = spiral(nEdges - 1, (direction + 3) % 4)
-      def verticalBar = elem('|', 1, sp.height)
-      def horizontalBar = elem('-', sp.width, 1)
-      if (direction == 0)
-        (corner beside horizontalBar) above (sp beside space)
-      else if (direction == 1)
-        (sp above space) beside (corner above verticalBar)
-      else if (direction == 2)
-        (space beside sp) above (horizontalBar beside corner)
-      else
-        (verticalBar above corner) beside (space above sp)
-    }
-  }
-
-  def main(args: Array[String]) {
-    val nSides = 6
-    println(spiral(nSides, 0))
   }
 }
