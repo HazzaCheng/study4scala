@@ -11,7 +11,9 @@ class Test {
 object Test {
 
 
+  def add2(x: Int)(y: Int) = x + y
 
+  val a = add2(3)_
 
 
   def main(args: Array[String]): Unit = {

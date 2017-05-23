@@ -3,7 +3,7 @@ package com.hazza
 import scala.io.Source
 
 /**
-  * Created by hazza on 5/23/17.
+  * 一个将方法内本地方法定义的例子，输出每行字符串的长度和字符串，是长度靠右对齐
   */
 object LengthAdapter {
 
