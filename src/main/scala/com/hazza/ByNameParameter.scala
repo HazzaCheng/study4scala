@@ -12,8 +12,8 @@ object ByNameParameter {
     if (assertionEnabled && !predicate)
       throw new AssertionError
 
-  //通过布尔值判断
-  def byBoolAssert(predicate: Boolean) =
+  //通过布尔值传值判断
+  def byValueAssert(predicate: Boolean) =
     if (assertionEnabled )
       throw new AssertionError
 
@@ -22,6 +22,6 @@ object ByNameParameter {
 
     byNameAssert(5 / 0 == 0)  //编译不会产上异常，因为括号里的表达式不是先于byNameAssert调用而被评估的，而是
                               //代之以创建一个函数值，其apply方法评估５／０＝＝０，而这个函数值将被传递给byNameAssert
-    byBoolAssert(5 / 0 == 0)  //编译会产生异常，因为括号里的表达式不是先于byBoolAssert调用而被评估的
+    byValueAssert(5 / 0 == 0)  //编译会产生异常，因为括号里的表达式不是先于byBoolAssert调用而被评估的
   }
 }
