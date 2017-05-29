@@ -35,6 +35,7 @@ object Main extends {
     queue3.put(1)
     println(queue3.get())
     println(queue3.get())
+    println(queue3.get())
     println()
   }
 }

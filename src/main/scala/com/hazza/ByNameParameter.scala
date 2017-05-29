@@ -25,3 +25,4 @@ object ByNameParameter {
     byValueAssert(5 / 0 == 0)  //编译会产生异常，因为括号里的表达式不是先于byBoolAssert调用而被评估的
   }
 }
+
