@@ -106,3 +106,14 @@ object Japan extends CurrencyZone {
   val Yen = make(1)
   val CurrentUnit = Yen
 }
+
+object testCurrency {
+  def main(args: Array[String]): Unit = {
+    val jpy = Japan.Yen from US.Dollar * 100
+    val usd = US.Dollar from Europe.Euro * 100
+    println(jpy)
+    println(usd)
+    println(jpy from usd)
+    println(Europe.Euro from (jpy from usd))
+  }
+}

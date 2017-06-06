@@ -1,23 +1,23 @@
 package com.hazza
-import scala.collection.mutable.Map
+import java.util.concurrent.ConcurrentHashMap
+
+import scala.collection.mutable
+import scala.collection.mutable.{ListBuffer, Map}
 
 /**
   * Created by hazzacheng on 17-2-1.
   */
-class Test {
+class Test(a: Int, b: Int){
 
 }
 
 object Test {
 
 
-  def add2(x: Int)(y: Int) = x + y
-
-  val a = add2(3)_
 
 
-  def main(args: Array[String]): Unit = {
-    val arr = new Array[String](3)
-  }
+
+
+
 
 }
