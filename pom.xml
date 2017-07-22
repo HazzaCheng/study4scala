@@ -67,6 +67,13 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- Actor -->
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-actor_2.10</artifactId>
+      <version>2.1.4</version>
+    </dependency>
+
     <!-- testing -->
     <dependency>
       <groupId>org.apache.camel</groupId>
