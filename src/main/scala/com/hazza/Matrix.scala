@@ -31,7 +31,7 @@ trait ThreadStrategy {
   def execute[A](func: Function0[A]): Function0[A]
 }
 
-trait SameThreadStrategy extends ThreadStrategy {
+object SameThreadStrategy extends ThreadStrategy {
   override def execute[A](func: () => A) = func
 }
 
