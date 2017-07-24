@@ -1,6 +1,7 @@
 package com.hazza
 
-import scala.collection.JavaConverters._
+import java.util.concurrent.{Callable, Executors}
+
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -35,8 +36,24 @@ object SameThreadStrategy extends ThreadStrategy {
   override def execute[A](func: () => A) = func
 }
 
+object ThreadPoolStrategy extends ThreadStrategy {
+  val pool = Executors.newFixedThreadPool(
+    java.lang.Runtime.getRuntime.availableProcessors());
+  def execute[A](func: Function0[A]) = {
+    val future = pool.submit(new Callable[A] {
+      override def call(): A = {
+        Console.println("Executing function on threads:" + Thread.currentThread().getName)
+        func()
+      }
+    })
+    () => future.get()
+  }
+}
+
 object MatrixUtils {
-  def multiply(a: Matrix, b: Matrix)(implicit threading: ThreadStrategy): Matrix = {
+  def multiply(a: Matrix, b: Matrix)(
+    implicit threading: ThreadStrategy = SameThreadStrategy
+  ): Matrix = {
     assert(a.colRank == b.rowRank)
     val buffer = new Array[Array[Double]](a.rowRank)
     for (i <- 0 until a.rowRank) buffer(i) = new Array[Double](b.colRank)
