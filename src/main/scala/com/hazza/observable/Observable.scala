@@ -19,9 +19,9 @@ trait Observable {
     callbacks -= handle
   }
 
-  def createHandle(callback: this.type => Unit): Handle
+  protected def createHandle(callback: this.type => Unit): Handle
 
-  def notifyListeners(): Unit = {
+  protected def notifyListeners(): Unit = {
     for (callback <- callbacks.values) callback(this)
   }
 }
